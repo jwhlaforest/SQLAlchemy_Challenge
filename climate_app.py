@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 # Database Setup
-engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+engine = create_engine("sqlite:///Resources/hawaii.sqlite", connect_args={'check_same_thread': False}, echo=True)
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
@@ -31,7 +31,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     print("Server received request for 'Home Page'")
-    return "Welcome to my Climate App <html><br><a href='/api/v1.0/precipitation'>/api/v1.0/precipitation</a><br><a href='/api/v1.0/stations'>/api/v1.0/stations</a><br><a href='/api/v1.0/tobs'>/api/v1.0/tobs</a><br><a href='/api/v1.0/<start>'>/api/v1.0/start</a><br><a href='/api/v1.0/<start>/<end>'>'/api/v1.0/start/end</a><br></html>"
+    return "Welcome to my Climate App <html><br><a href='/api/v1.0/precipitation'>/api/v1.0/precipitation</a><br><a href='/api/v1.0/stations'>/api/v1.0/stations</a><br><a href='/api/v1.0/tobs'>/api/v1.0/tobs</a><br><a href='/api/v1.0/<start>'>/api/v1.0/start</a><br><a href='/api/v1.0/<start>/<end>'>/api/v1.0/start/end</a><br></html>"
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
